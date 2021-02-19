@@ -36,9 +36,9 @@ RUN curl -LO "https://get.helm.sh/helm-$helm_version-linux-amd64.tar.gz" && \
     tar -xzf "helm-$helm_version-linux-amd64.tar.gz" -C "/usr/local/helm-$helm_version" && \
     ln -s "/usr/local/helm-$helm_version/linux-amd64/helm" /usr/local/bin/helm && \
     rm -f "helm-$helm_version-linux-amd64.tar.gz"
-
-COPY ./etc/chart_schema.yaml /etc/ct/chart_schema.yaml
-COPY ./etc/lintconf.yaml /etc/ct/lintconf.yaml
+# commented by ranjit
+#COPY ./etc/chart_schema.yaml /etc/ct/chart_schema.yaml
+#COPY ./etc/lintconf.yaml /etc/ct/lintconf.yaml
 COPY ct /usr/local/bin/ct
 # Ensure that the binary is available on path and is executable
 RUN ct --help
