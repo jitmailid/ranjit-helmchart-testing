@@ -38,7 +38,7 @@ RUN curl -LO "https://get.helm.sh/helm-$helm_version-linux-amd64.tar.gz" && \
     rm -f "helm-$helm_version-linux-amd64.tar.gz"
  
 # Install ct 
-ARG ct_version=v3.3.1
+ARG ct_version=3.3.1
 LABEL ct_version=$ct_version
 RUN pip install "ct==$ct_version"
 
