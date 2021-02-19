@@ -1,15 +1,15 @@
 FROM centos
 
-RUN apk --no-cache add \
-    bash \
-    curl \
-    git \
-    libc6-compat \
-    openssh-client \
-    py3-pip \
-    py3-wheel \
-    python3 && \
-    pip install --upgrade pip==21.0.1
+#RUN apk --no-cache add \
+#    bash \
+#    curl \
+#    git \
+#    libc6-compat \
+#    openssh-client \
+#    py3-pip \
+#    py3-wheel \
+#    python3 && \
+#    pip install --upgrade pip==21.0.1 
 
 # Install a YAML Linter
 ARG yamllint_version=1.26.0
