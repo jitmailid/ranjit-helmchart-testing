@@ -36,6 +36,7 @@ pipeline {
                     docker tag ${IMAGE} ${IMAGE}:${VERSION}
                    
                 '''
-            }
+             }
+       }
   }
 }
