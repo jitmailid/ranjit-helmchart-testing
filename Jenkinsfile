@@ -1,9 +1,6 @@
-node {
-    checkout scm
 
-    def customImage = docker.build("my-image:${env.BUILD_ID}")
-
-    customImage.inside {
-        sh 'make test'
+  stage('Create Docker Image') {
+    dir('webapp') {
+      docker.build("ranjit/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
     }
-}
+  }
