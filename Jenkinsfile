@@ -12,7 +12,7 @@ pipeline {
   environment {
     /*registry = "gustavoapolinario/docker-test"
     registryCredential = ‘dockerhub’ */
-      IMAGE = "MY-IMAGE"
+      IMAGE = "my-image"
       VERSION = '1.0'
   }
   agent any
