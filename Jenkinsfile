@@ -15,6 +15,7 @@ pipeline {
     customImage.inside {
         sh 'make test'
     }
+        }
     }
 }
 
