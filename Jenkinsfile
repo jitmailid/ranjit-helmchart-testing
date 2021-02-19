@@ -1,8 +1,12 @@
+node {
+    stage('Create Docker Image') {
+    checkout scm
 
-node { 
-stage('Create Docker Image') {
-    dir('webapp') {
-      docker.build("ranjit/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
+    docker.withRegistry('https://registry.example.com') {
+
+        docker.image('my-custom-image').inside {
+            sh 'make test'
+        }
     }
-  }
+    }
 }
