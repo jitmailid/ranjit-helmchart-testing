@@ -1,4 +1,4 @@
-node {
+/*node {
     stage('Create Docker Image') {
     checkout scm
 
@@ -8,5 +8,17 @@ node {
             sh 'make test'
         }
     }
+    }
+}*/
+pipeline {
+    agent {
+        docker { image 'node:14-alpine' }
+    }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
+        }
     }
 }
