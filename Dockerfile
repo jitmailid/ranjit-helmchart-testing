@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM centos
 
 RUN apk --no-cache add \
     bash \
