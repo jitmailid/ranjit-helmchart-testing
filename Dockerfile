@@ -37,15 +37,10 @@ RUN curl -LO "https://get.helm.sh/helm-$helm_version-linux-amd64.tar.gz" && \
     ln -s "/usr/local/helm-$helm_version/linux-amd64/helm" /usr/local/bin/helm && \
     rm -f "helm-$helm_version-linux-amd64.tar.gz"
  
-# Install ct 
-ARG ct_version=3.3.1
-LABEL ct_version=$ct_version
-RUN ct install
-
 
 # commented by ranjit
 #COPY ./etc/chart_schema.yaml /etc/ct/chart_schema.yaml
 #COPY ./etc/lintconf.yaml /etc/ct/lintconf.yaml
-#COPY ct /usr/local/bin/ct
+COPY ct /usr/local/bin/ct
 # Ensure that the binary is available on path and is executable
-#RUN ct --help
+RUN ct --help
