@@ -50,7 +50,7 @@ pipeline {
           steps{
               sh '''
                  
-                  docker run --name test-helm-chart ${IMAGE}:${VERSION}
+                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION}
                   
               '''
           }
