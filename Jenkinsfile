@@ -29,7 +29,7 @@ pipeline {
         }
       }
     }*/
-       stage('Build docker image') {
+       /*stage('Build docker image') {
              steps {
                 sh '''
                     docker build -t ${IMAGE} .
@@ -37,12 +37,20 @@ pipeline {
                    
                 '''
              }
+       }*/
+      stage('Build docker image') {
+             steps {
+                sh '''
+                    docker build -t ${IMAGE}:${VERSION} .
+                    
+                '''
+             }
        }
       stage('Creation of Docker Container'){
           steps{
               sh '''
                  
-                  docker run --name test-helm-chart ${IMAGE}:${VERSION} -v data:/var/data
+                  docker run --name test-helm-chart ${IMAGE}:${VERSION}
                   
               '''
           }
