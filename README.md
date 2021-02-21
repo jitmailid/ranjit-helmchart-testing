@@ -5,4 +5,12 @@ Reference:
 https://helm.sh/docs/topics/charts/#schema-files
 https://www.arthurkoziel.com/validate-helm-chart-values-with-json-schemas/
 
+Validation Point will be :
+
+apiVersion :(required)
+name : (required)
+version :(required)
+
+maintainers: # (optional)
+  - name: The maintainers name (required for each maintainer)
 
