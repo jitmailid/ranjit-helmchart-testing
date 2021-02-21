@@ -44,3 +44,4 @@ RUN curl -LO "https://get.helm.sh/helm-$helm_version-linux-amd64.tar.gz" && \
 #COPY ct /usr/local/bin/ct
 # Ensure that the binary is available on path and is executable
 #RUN ct --help
+RUN mkdir data
