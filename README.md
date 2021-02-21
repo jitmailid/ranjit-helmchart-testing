@@ -14,3 +14,5 @@ version :(required)
 maintainers: # (optional)
   - name: The maintainers name (required for each maintainer)
 
+A version must follow the SemVer 2 standard
+
