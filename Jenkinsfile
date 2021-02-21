@@ -51,7 +51,11 @@ pipeline {
               sh '''
                  
                   docker run --name test-helm-chart -d ${IMAGE}:${VERSION} sleep infinity
-                  docker cp ${WORKSPACE}/* test-helm-chart:"data/"
+                  docker cp ${WORKSPACE}/ct/ test-helm-chart:data/
+                  docker cp ${WORKSPACE}/etc/ test-helm-chart:data/
+                  docker cp ${WORKSPACE}/templates/ test-helm-chart:data/
+                  docker cp ${WORKSPACE}/Chart.yaml test-helm-chart:data/
+                  docker cp ${WORKSPACE}/vlaues.yaml test-helm-chart:data/
               '''
           }
       }
