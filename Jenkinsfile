@@ -38,5 +38,23 @@ pipeline {
                 '''
              }
        }
+      stage('Creation of Docker Container'){
+          steps{
+              sh '''
+                 
+                  docker run --name test-helm-chart ${IMAGE}:${VERSION} -v data:/var/data
+                  
+              '''
+          }
+      }
+      stage('Validation helm chart templates'){
+          steps{
+              sh '''
+                 
+                  echo "wow done"
+                  
+              '''
+          }
+      }
   }
 }
