@@ -55,7 +55,7 @@ pipeline {
                   docker cp ${WORKSPACE}/etc/ test-helm-chart:data/
                   docker cp ${WORKSPACE}/templates/ test-helm-chart:data/
                   docker cp ${WORKSPACE}/Chart.yaml test-helm-chart:data/
-                  docker cp ${WORKSPACE}/vlaues.yaml test-helm-chart:data/
+                  docker cp ${WORKSPACE}/values.yaml test-helm-chart:data/
               '''
           }
       }
