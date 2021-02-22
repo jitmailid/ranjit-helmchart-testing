@@ -45,9 +45,9 @@ pipeline {
               
               sh '''
               
-                  helm template ${WORKSPACE} | tee output.log 
+                  helm template ${WORKSPACE} | tee output.log | grep "ERROR" output.log
                   
-                  | grep "ERROR" output.log
+                  
               
               '''
           
@@ -64,7 +64,7 @@ pipeline {
               script{
                   while(VALIDATION_COMPLETE != true){
                    sh '''
-                   | grep "ERROR" output.log
+                    grep "ERROR" output.log
                    
                    '''
                   }
