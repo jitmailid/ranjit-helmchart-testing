@@ -43,8 +43,8 @@ pipeline {
           stage(' alidation') {
           steps{
               
-              sh ''' helm template ${WORKSPACE} | tee output.log '''
-              sh ''' helm lint ${WORKSPACE}/values.yaml | tee output.log '''
+              sh "helm template ${WORKSPACE} | tee output.log"
+              sh "helm lint ${WORKSPACE}/values.yaml | tee output.log"
               sh ''' | grep "ERROR" output.log' '''
               script{
                   VALIDATION_COMPLETE = true
