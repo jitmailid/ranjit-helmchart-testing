@@ -43,11 +43,11 @@ pipeline {
           stage(' alidation') {
           steps{
               
-              sh 'helm template ${WORKSPACE} | tee output.log '
-              sh 'helm lint ${WORKSPACE}/values.yaml | tee output.log '
-              sh '| grep "ERROR" output.log'
+              sh ''' helm template ${WORKSPACE} | tee output.log '''
+              sh ''' helm lint ${WORKSPACE}/values.yaml | tee output.log '''
+              sh ''' | grep "ERROR" output.log' '''
               script{
-                  VALIDATION_COMPLET = true
+                  VALIDATION_COMPLETE = true
               }
               echo "wow done"
                   
@@ -57,7 +57,7 @@ pipeline {
               stage('Monitoring validation logs ') {
           steps{
               script{
-                  while(VALIDATION_COMPLET != true){
+                  while(VALIDATION_COMPLETE != true){
                    sh '| grep "ERROR" output.log'
                   }
               }
