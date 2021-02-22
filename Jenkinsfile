@@ -64,7 +64,8 @@ pipeline {
       stage('Validation helm chart templates'){
           steps{
               sh '''
-                 
+                 helm template ${WORKSPACE}          
+                 helm lint ${WORKSPACE}/values.yaml
                   echo "wow done"
                   
               '''
