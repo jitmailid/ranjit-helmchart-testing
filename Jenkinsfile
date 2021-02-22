@@ -61,7 +61,10 @@ pipeline {
               '''
           }
       }
-      stage('Validation helm chart templates'){
+      stage('Generic validation of helm chart'){
+          failFast true
+          parallel {
+          stage(' validation') {
           steps{
               sh '''
                  helm template ${WORKSPACE}          
@@ -70,6 +73,18 @@ pipeline {
                   
               '''
           }
+          } // end of stage within parallel
+              stage(' Monitoring validation logs ') {
+          steps{
+              sh '''
+                 helm template ${WORKSPACE}          
+                 helm lint ${WORKSPACE}/values.yaml
+                  echo "wow done"
+                  
+              '''
+          }
+          } // end of stage within parallel
+      } //Parallel end 
       }
   }
 }
