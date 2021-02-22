@@ -1,12 +1,3 @@
-/* node {
-    checkout scm
-
-    def customImage = docker.build("my-image:${env.BUILD_ID}")
-
-    customImage.inside {
-        sh 'make test'
-    }
-}*/
  //docker push ${IMAGE}:${VERSION}
 pipeline {
   environment {
@@ -23,23 +14,7 @@ pipeline {
         git 'https://github.com/jitmailid/ranjit-helmchart-testing.git'
       }
     }
-   /* stage('Building image') {
-      steps{
-        script {
-          docker.build registry + ":$BUILD_NUMBER"
-        }
-      }
-    }*/
-       /*stage('Build docker image') {
-             steps {
-                sh '''
-                    docker build -t ${IMAGE} .
-                    docker tag ${IMAGE} ${IMAGE}:${VERSION}
-                   
-                '''
-             }
-       }*/
-      stage('Build docker image') {
+        stage('Build docker image') {
              steps {
                 sh '''
                     docker build -t ${IMAGE}:${VERSION} .
@@ -65,12 +40,12 @@ pipeline {
       stage('Generic validation of helm chart'){
           failFast true
           parallel {
-          stage(' validation') {
+          stage(' alidation') {
           steps{
               
               sh "helm template ${WORKSPACE} | tee output.log "
               sh "helm lint ${WORKSPACE}/values.yaml | tee output.log "
-              sh "| grep 'ERROR' output.log"
+              sh '| grep "ERROR" output.log'
               script{
                   VALIDATION_COMPLET = true
               }
@@ -79,11 +54,11 @@ pipeline {
              
           }
           } // end of stage within parallel
-              stage(' Monitoring validation logs ') {
+              stage('Monitoring validation logs ') {
           steps{
               script{
                   while(VALIDATION_COMPLET != true){
-                   sh ' | grep "ERROR" output.log'
+                   sh '| grep "ERROR" output.log'
                   }
               }
           }
