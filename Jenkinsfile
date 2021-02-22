@@ -45,7 +45,7 @@ pipeline {
               
               sh '''
               
-                  helm template ${WORKSPACE}
+                  ./helm template ${WORKSPACE} | tee output.log | grep "ERROR" output.log
                   
                   
               
