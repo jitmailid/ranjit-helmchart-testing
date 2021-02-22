@@ -12,6 +12,7 @@ pipeline {
     registryCredential = ‘dockerhub’ */
       IMAGE = "my-image"
       VERSION = '1.0'
+      VALIDATION_COMPLETE = false
   }
   agent any
   stages {
@@ -64,22 +65,25 @@ pipeline {
           parallel {
           stage(' validation') {
           steps{
-              sh '''
-                 helm template ${WORKSPACE}          
-                 helm lint ${WORKSPACE}/values.yaml
-                  echo "wow done"
+              
+              sh "helm template ${WORKSPACE} | tee output.log "
+              sh "helm lint ${WORKSPACE}/values.yaml | tee output.log "
+              sh "| grep 'ERROR' output.log"
+              script{
+                  VALIDATION_COMPLET = true
+              }
+              echo "wow done"
                   
-              '''
+             
           }
           } // end of stage within parallel
               stage(' Monitoring validation logs ') {
           steps{
-              sh '''
-                 helm template ${WORKSPACE}          
-                 helm lint ${WORKSPACE}/values.yaml
-                  echo "wow done"
-                  
-              '''
+              script{
+                  while(VALIDATION_COMPLET != true){
+                   sh ' | grep "ERROR" output.log'
+                  }
+              }
           }
           } // end of stage within parallel
       } //Parallel end 
