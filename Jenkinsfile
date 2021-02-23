@@ -39,7 +39,7 @@ pipeline {
       }
    
       stage('Generic validation of helm chart'){
-       try{ //
+       try { //
        steps{
        
          withDockerContainer(image: IMAGE+':'+VERSION, toolName: 'Default') {
