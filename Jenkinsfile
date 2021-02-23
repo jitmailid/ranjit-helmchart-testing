@@ -50,7 +50,7 @@ script {
           // validateData = sh('! grep "ERROR" output.log')
           if(validateData.toString().contains('ERROR'))
  {
-       sh'echo validateData'
+       sh'tee output.log';
            exit 1
           }
           
