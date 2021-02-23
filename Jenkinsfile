@@ -63,7 +63,7 @@ pipeline {
             
                }
            
-              echo "wow done"
+           //   echo "wow done"
                   
              
           }
