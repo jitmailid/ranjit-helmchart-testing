@@ -37,9 +37,9 @@ pipeline {
               '''
           }
       }
-   try{ //
+   
       stage('Generic validation of helm chart'){
-       
+       try{ //
        steps{
        
          withDockerContainer(image: IMAGE+':'+VERSION, toolName: 'Default') {
@@ -65,10 +65,7 @@ script {
          }// docker continer
                } //steps
            
-         
-        
-      } //stage
-    } catch (e) {
+         } catch (e) {
   if (autoCancelled) {
     currentBuild.result = 'SUCCESS'
     // return here instead of throwing error to keep the build "green"
@@ -77,6 +74,9 @@ script {
   // normal error handling
   throw e
 }
+        
+      } //stage
+    
    
   }
 }
