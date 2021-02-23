@@ -38,7 +38,7 @@ pipeline {
           }
       }
       stage('Generic validation of helm chart'){
-       
+       steps{
        
          withDockerContainer(image: IMAGE+':'+VERSION, toolName: 'Default') {
     // some block
@@ -49,7 +49,7 @@ pipeline {
             sh 'helm lint ${WORKSPACE} | tee output.log'
             sh '! grep "Error" output.log'
            
-           
+         }
                }
            
          
