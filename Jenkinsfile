@@ -57,7 +57,7 @@ pipeline {
               }*/
            container('test-helm-chart') {
     // some block
-             helm template ${WORKSPACE} 
+            sh 'helm template ${WORKSPACE}'
                }
            
               echo "wow done"
