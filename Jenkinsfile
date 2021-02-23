@@ -79,9 +79,9 @@ pipeline {
                     grep "ERROR" output.log
                    
                    '''
-                  }  */
+                  }  
            
-              }
+              }*/
           }
           } // end of stage within parallel
       } //Parallel end 
