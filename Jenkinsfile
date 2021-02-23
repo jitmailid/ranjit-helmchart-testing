@@ -47,7 +47,13 @@ pipeline {
             sh 'helm version'
             //sh 'helm template ${WORKSPACE} | tee output.log'
             sh 'helm lint ${WORKSPACE} | tee output.log'
-            sh '! grep "Error" output.log'
+           validateData = sh('! grep "Error" output.log')
+          if(validateData.isEmpty()){
+           
+          }
+          else {
+                        exit 1
+                    }
            
          }
                }
