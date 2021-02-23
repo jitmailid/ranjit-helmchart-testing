@@ -62,7 +62,7 @@ pipeline {
             sh 'helm version'
             //sh 'helm template ${WORKSPACE} | tee output.log'
             sh 'helm lint ${WORKSPACE} | tee output.log'
-            sh 'grep "Error" output.log'
+            sh '! grep "Error" output.log'
             script{
              VALIDATION_COMPLETE = true
             }
