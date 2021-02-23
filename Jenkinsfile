@@ -8,7 +8,7 @@ pipeline {
       VALIDATION_COMPLETE = false
   }
   agent any
-  stages {
+  stages { /* uncommnet 
     stage('Cloning Git') {
       steps {
         git 'https://github.com/jitmailid/ranjit-helmchart-testing.git'
@@ -60,15 +60,20 @@ pipeline {
              
           }
           } // end of stage within parallel
+           uncomment */
               stage('Monitoring validation logs ') {
           steps{
+           /* uncomment 
               script{
                   while(VALIDATION_COMPLETE != true){
                    sh '''
                     grep "ERROR" output.log
                    
                    '''
-                  }
+                  }  uncomment */
+           container('test-helm-chart') {
+    helm template ${WORKSPACE} 
+}
               }
           }
           } // end of stage within parallel
