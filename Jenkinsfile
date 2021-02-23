@@ -55,7 +55,7 @@ pipeline {
               script{
                   VALIDATION_COMPLETE = true
               }*/
-           withDockerContainer(image: IMAGE+VERSION, toolName: 'Default') {
+           withDockerContainer(image: IMAGE+':'+VERSION, toolName: 'Default') {
     // some block
 
 
