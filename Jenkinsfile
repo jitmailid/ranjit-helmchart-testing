@@ -38,24 +38,9 @@ pipeline {
           }
       }
       stage('Generic validation of helm chart'){
-          failFast true
-          parallel {
-          stage(' validation') {
-          steps{
-              
-             /* sh '''
-              
-                  docker exec -i test-helm-chart sh
-                  helm template ${WORKSPACE} | tee output.log | grep "ERROR" output.log
-                  
-                  
-              
-              ''' 
-          
-              script{
-                  
-              }*/
-           withDockerContainer(image: IMAGE+':'+VERSION, toolName: 'Default') {
+       
+       
+         withDockerContainer(image: IMAGE+':'+VERSION, toolName: 'Default') {
     // some block
 
 
@@ -63,35 +48,12 @@ pipeline {
             //sh 'helm template ${WORKSPACE} | tee output.log'
             sh 'helm lint ${WORKSPACE} | tee output.log'
             sh '! grep "Error" output.log'
-            script{
-             VALIDATION_COMPLETE = true
-            }
+           
            
                }
            
-           //   echo "wow done"
-                  
-             
-          }
-          } // end of stage within parallel
-           
-              stage('Monitoring validation logs ') {
-          steps{
-          
-         // echo "wow done"
-             script{
-                  while(VALIDATION_COMPLETE != true){
-                    
-                  // sh'! grep "Error" output.log'
-                   echo 'output.log'
-                   
-                   
-                  }  
-           
-              }
-          }
-          } // end of stage within parallel
-      } //Parallel end 
+         
+        
       }
   }
 }
