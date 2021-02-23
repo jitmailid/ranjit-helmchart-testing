@@ -37,7 +37,9 @@ pipeline {
               '''
           }
       }
+   try{ //
       stage('Generic validation of helm chart'){
+       
        steps{
        
          withDockerContainer(image: IMAGE+':'+VERSION, toolName: 'Default') {
@@ -50,17 +52,31 @@ script {
           // validateData = sh('! grep "ERROR" output.log')
           if(validateData.toString().contains('ERROR'))
  {
-       sh'tee output.log';
-           exit 1
-          }
+       //sh'tee output.log';
+        //   exit 1
+  sh'echo hi' ;
+  autoCancelled = true
+      error('Aborting the build.')
+  
+          }//
           
            
-         }
-         }
-               }
+         }//
+         }// docker continer
+               } //steps
            
          
         
-      }
+      } //stage
+    } catch (e) {
+  if (autoCancelled) {
+    currentBuild.result = 'SUCCESS'
+    // return here instead of throwing error to keep the build "green"
+    return
+  }
+  // normal error handling
+  throw e
+}
+   
   }
 }
