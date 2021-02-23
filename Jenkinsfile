@@ -42,7 +42,7 @@ pipeline {
        
          withDockerContainer(image: IMAGE+':'+VERSION, toolName: 'Default') {
     // some block
-
+script {
 
             sh 'helm version'
             //sh 'helm template ${WORKSPACE} | tee output.log'
@@ -55,6 +55,7 @@ pipeline {
                         exit 1
                     }
            
+         }
          }
                }
            
