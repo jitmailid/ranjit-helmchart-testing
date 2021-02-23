@@ -9,7 +9,7 @@ pipeline {
   }
   agent any
   stages { 
-  /*  stage('Cloning Git') {
+    stage('Cloning Git') {
       steps {
         git 'https://github.com/jitmailid/ranjit-helmchart-testing.git'
       }
@@ -36,7 +36,7 @@ pipeline {
                   
               '''
           }
-      }*/
+      }
       stage('Generic validation of helm chart'){
        steps{
        
@@ -50,6 +50,7 @@ script {
           // validateData = sh('! grep "ERROR" output.log')
           if(validateData.toString().contains('ERROR'))
  {
+       sh'echo validateData'
            exit 1
           }
           
