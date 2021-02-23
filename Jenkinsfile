@@ -53,16 +53,20 @@ pipeline {
               ''' 
           
               script{
-                  VALIDATION_COMPLETE = true
+                  
               }*/
            withDockerContainer(image: IMAGE+':'+VERSION, toolName: 'Default') {
     // some block
 
 
             sh 'helm version'
-            sh 'helm template ${WORKSPACE} | tee output.log'
+            //sh 'helm template ${WORKSPACE} | tee output.log'
             sh 'helm lint ${WORKSPACE}/values.yaml | tee output.log'
-            
+            sh '| grep "Error" output.log'
+            script{
+             VALIDATION_COMPLETE = true
+            }
+           
                }
            
            //   echo "wow done"
@@ -74,8 +78,8 @@ pipeline {
               stage('Monitoring validation logs ') {
           steps{
           
-           echo "wow done"
-             /* script{
+         // echo "wow done"
+             script{
                   while(VALIDATION_COMPLETE != true){
                    sh '''
                     grep "ERROR" output.log
@@ -83,7 +87,7 @@ pipeline {
                    '''
                   }  
            
-              }*/
+              }
           }
           } // end of stage within parallel
       } //Parallel end 
