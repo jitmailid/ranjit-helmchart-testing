@@ -45,7 +45,7 @@ pipeline {
               
               sh '''
               
-                  docker exec -it test-helm-chart /bin/bash
+                  docker exec -t test-helm-chart /bin/bash
                   helm template ${WORKSPACE} | tee output.log | grep "ERROR" output.log
                   
                   
