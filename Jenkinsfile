@@ -59,7 +59,7 @@ pipeline {
     // some block
 
 
-            sh 'helm template ${WORKSPACE}'
+            sh 'helm version'
             
                }
            
