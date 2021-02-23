@@ -9,7 +9,7 @@ pipeline {
   }
   agent any
   stages { 
-    /*stage('Cloning Git') {
+    stage('Cloning Git') {
       steps {
         git 'https://github.com/jitmailid/ranjit-helmchart-testing.git'
       }
@@ -36,7 +36,7 @@ pipeline {
                   
               '''
           }
-      }*/
+      }
       stage('Generic validation of helm chart'){
           failFast true
           parallel {
@@ -82,7 +82,8 @@ pipeline {
              script{
                   while(VALIDATION_COMPLETE != true){
                     
-                   sh'! grep "Error" output.log'
+                  // sh'! grep "Error" output.log'
+                   echo 'output.log'
                    
                    
                   }  
