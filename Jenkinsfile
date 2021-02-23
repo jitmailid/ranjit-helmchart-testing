@@ -55,11 +55,12 @@ pipeline {
               script{
                   VALIDATION_COMPLETE = true
               }*/
-           withDockerContainer(test-helm-chart) {
+           withDockerContainer(image: ${IMAGE}, toolName: 'Default') {
     // some block
 
 
             sh 'helm template ${WORKSPACE}'
+            
                }
            
               echo "wow done"
