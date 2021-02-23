@@ -81,10 +81,10 @@ pipeline {
          // echo "wow done"
              script{
                   while(VALIDATION_COMPLETE != true){
-                   sh '''
-                    grep "ERROR" output.log
+                    
+                   sh'! grep "Error" output.log'
                    
-                   '''
+                   
                   }  
            
               }
