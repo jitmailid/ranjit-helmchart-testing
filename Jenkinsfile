@@ -48,7 +48,7 @@ script {
             //sh 'helm template ${WORKSPACE} | tee output.log'
           validateData =  sh 'helm lint ${WORKSPACE} | tee output.log';
           // validateData = sh('! grep "ERROR" output.log')
-          if(validateData.contains('ERROR'))
+          if(validateData.toString().contains('ERROR'))
  {
            exit 1
           }
