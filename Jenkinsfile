@@ -55,7 +55,7 @@ pipeline {
               script{
                   VALIDATION_COMPLETE = true
               }*/
-           dockerNode(image: 'my-image', sideContainers: ['test-helm-chart']) {
+           withDockerContainer(test-helm-chart) {
     // some block
 
 
