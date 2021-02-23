@@ -72,13 +72,14 @@ pipeline {
               stage('Monitoring validation logs ') {
           steps{
           
-              script{
+           echo "wow done"
+             /* script{
                   while(VALIDATION_COMPLETE != true){
                    sh '''
                     grep "ERROR" output.log
                    
                    '''
-                  }  
+                  }  */
            
               }
           }
