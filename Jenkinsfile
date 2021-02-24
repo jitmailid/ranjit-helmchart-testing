@@ -48,8 +48,8 @@ script {
 try { 
             sh 'helm version'
             //sh 'helm template ${WORKSPACE} | tee output.log'
-          validateData =  sh 'helm lint ${WORKSPACE} | tee output.log';
-          // validateData = sh('! grep "ERROR" output.log')
+           sh 'helm lint ${WORKSPACE} | tee output.log';
+          validateData = sh('! grep "ERROR" output.log')
           if(validateData.toString().contains('ERROR'))
  {
        //sh'tee output.log';
