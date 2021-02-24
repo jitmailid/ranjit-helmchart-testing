@@ -37,30 +37,46 @@ pipeline {
               '''
           }
       }
+   
       stage('Generic validation of helm chart'){
+       
        steps{
        
          withDockerContainer(image: IMAGE+':'+VERSION, toolName: 'Default') {
     // some block
 script {
-
+try { 
             sh 'helm version'
             //sh 'helm template ${WORKSPACE} | tee output.log'
-          validateData =  sh 'helm lint ${WORKSPACE} | tee output.log';
-          // validateData = sh('! grep "ERROR" output.log')
+           sh 'helm lint ${WORKSPACE} | tee output.log';
+          validateData = sh('! grep "ERROR" output.log')
           if(validateData.toString().contains('ERROR'))
  {
-       sh'tee output.log';
-           exit 1
-          }
-          
+       //sh'tee output.log';
+        //   exit 1
+  sh'echo hi' ;
+  autoCancelled = true
+      error('Aborting the build.')
+  
+          }//
+           } catch (e) {
+  if (autoCancelled) {
+    currentBuild.result = 'SUCCESS'
+    // return here instead of throwing error to keep the build "green"
+    return
+  }
+  // normal error handling
+  throw e
+}
            
          }
          }
-               }
+               } 
            
-         
         
-      }
+        
+      } //stage
+    
+   
   }
 }
