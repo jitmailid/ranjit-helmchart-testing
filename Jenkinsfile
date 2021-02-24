@@ -44,12 +44,13 @@ pipeline {
                   
               ''' */
       
-           
+           script{
           docker {
                 image '${IMAGE}:${VERSION}'
                 args '-v ${WORKSPACE}:/var -w /var'
                 //reuseNode true
             }
+           }
             
            
           }
