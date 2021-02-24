@@ -39,13 +39,13 @@ pipeline {
       }
    
       stage('Generic validation of helm chart'){
-       try { //
+       
        steps{
        
          withDockerContainer(image: IMAGE+':'+VERSION, toolName: 'Default') {
     // some block
 script {
-
+try { 
             sh 'helm version'
             //sh 'helm template ${WORKSPACE} | tee output.log'
           validateData =  sh 'helm lint ${WORKSPACE} | tee output.log';
@@ -59,13 +59,7 @@ script {
       error('Aborting the build.')
   
           }//
-          
-           
-         }//
-         }// docker continer
-               } //steps
-           
-         } catch (e) {
+           } catch (e) {
   if (autoCancelled) {
     currentBuild.result = 'SUCCESS'
     // return here instead of throwing error to keep the build "green"
@@ -74,6 +68,12 @@ script {
   // normal error handling
   throw e
 }
+           
+         }
+         }
+               } /
+           
+        
         
       } //stage
     
