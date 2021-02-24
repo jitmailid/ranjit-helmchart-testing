@@ -45,7 +45,7 @@ pipeline {
               ''' 
               */
            sh '''
-                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} sleep infinity
+                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} -v /var/jenkins_home/workspace/ranjit_pipeline:/var sleep infinity
                   
                   
               ''' 
