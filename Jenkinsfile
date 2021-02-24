@@ -46,9 +46,9 @@ pipeline {
       
            
           docker {
-                image 'node:6-alpine'
+                image '${IMAGE}:${VERSION}'
                 args '-v ${WORKSPACE}:/var -w /var'
-                reuseNode true
+                //reuseNode true
             }
             
            
