@@ -45,7 +45,7 @@ pipeline {
               ''' 
               */
            sh '''
-                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} -v $(pwd):/var sleep infinity
+                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} -v $PWD:/var sleep infinity
                   
                   
               ''' 
