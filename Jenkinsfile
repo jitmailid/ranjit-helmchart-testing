@@ -37,9 +37,15 @@ pipeline {
                   docker cp ${WORKSPACE}/values.schema.json test-helm-chart:data/
                   
               ''' */
+           /*sh '''
+                  docker volume create data
+                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} -v ${WORKSPACE}:/data 
+                  
+                  
+              ''' 
+              */
            sh '''
-                 
-                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} -v ${WORKSPACE}:/var 
+                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} sleep infinity
                   
                   
               ''' 
