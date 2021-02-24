@@ -11,7 +11,7 @@ pipeline {
   }
   agent any
   stages { 
-  /*  stage('Cloning Git') {
+   stage('Cloning Git') {
       steps {
         git 'https://github.com/jitmailid/ranjit-helmchart-testing.git'
       }
@@ -23,7 +23,7 @@ pipeline {
                     
                 '''
              }
-       }*/
+       }
       stage('Creation of Docker Container'){
           steps{
              /* sh '''
@@ -39,7 +39,7 @@ pipeline {
               ''' */
            sh '''
                  
-                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} --volume ${WORKSPACE}:/data sleep infinity
+                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} --volume ${WORKSPACE}:/data 
                   
                   
               ''' 
