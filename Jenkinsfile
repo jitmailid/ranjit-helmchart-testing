@@ -43,11 +43,14 @@ pipeline {
                   
                   
               ''' */
+      
+           
+           agent {
            docker {
             image 'test-helm-chart'
             args '-v ${WORKSPACE}:/var'
         }
-           
+           }
           }
       }
    
