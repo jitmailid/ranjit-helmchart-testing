@@ -6,6 +6,8 @@ pipeline {
       IMAGE = "my-image"
       VERSION = '1.0'
       VALIDATION_COMPLETE = false
+      CONTAINER_NAME: "test-helm-chart"
+      
   }
   agent any
   stages { 
@@ -24,7 +26,7 @@ pipeline {
        }
       stage('Creation of Docker Container'){
           steps{
-              sh '''
+             /* sh '''
                  
                   docker run --name test-helm-chart -d ${IMAGE}:${VERSION} sleep infinity
                   docker cp ${WORKSPACE}/ct/ test-helm-chart:data/
@@ -34,7 +36,13 @@ pipeline {
                   docker cp ${WORKSPACE}/values.yaml test-helm-chart:data/
                   docker cp ${WORKSPACE}/values.schema.json test-helm-chart:data/
                   
-              '''
+              ''' */
+           sh '''
+                 
+                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} -v ${WORKSPACE}:/data sleep infinity
+                  
+                  
+              ''' 
           }
       }
    
