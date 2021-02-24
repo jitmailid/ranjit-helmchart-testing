@@ -26,38 +26,14 @@ pipeline {
        }
       stage('Creation of Docker Container'){
           steps{
-             /* sh '''
-                 
-                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} sleep infinity
-                  docker cp ${WORKSPACE}/ct/ test-helm-chart:data/
-                  docker cp ${WORKSPACE}/etc/ test-helm-chart:data/
-                  docker cp ${WORKSPACE}/templates/ test-helm-chart:data/
-                  docker cp ${WORKSPACE}/Chart.yaml test-helm-chart:data/
-                  docker cp ${WORKSPACE}/values.yaml test-helm-chart:data/
-                  docker cp ${WORKSPACE}/values.schema.json test-helm-chart:data/
-                  
-              ''' */
-           /*sh '''
-                  docker volume create data
-                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} -v ${WORKSPACE}:/data 
-                  
-                  
-              ''' 
-              */
+            
            sh '''
                   
-                  docker run -d --name test-helm-chart  -v ${WORKSPACE}:/data  my-image:1.0  sleep infinity
+                  docker run -d --name test-helm-chart  -v ${WORKSPACE}:/var  my-image:1.0  sleep infinity
                   
                   
               ''' 
       
-          /* script{
-          docker {
-                image '${IMAGE}:${VERSION}'
-                args '-v ${WORKSPACE}:/var'
-                //reuseNode true
-            }
-           }*/
             
            
           }
