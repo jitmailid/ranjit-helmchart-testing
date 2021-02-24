@@ -45,12 +45,13 @@ pipeline {
               ''' */
       
            
-           agent {
-           docker {
-            image 'test-helm-chart'
-            args '-v ${WORKSPACE}:/var'
-        }
-           }
+          docker {
+                image 'node:6-alpine'
+                args '-v ${WORKSPACE}:/var -w /var'
+                reuseNode true
+            }
+            
+           
           }
       }
    
