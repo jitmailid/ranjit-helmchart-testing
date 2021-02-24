@@ -37,12 +37,17 @@ pipeline {
                   docker cp ${WORKSPACE}/values.schema.json test-helm-chart:data/
                   
               ''' */
-           sh '''
+           /*sh '''
                  
                   docker run --name test-helm-chart -d ${IMAGE}:${VERSION} --volume ${WORKSPACE}:/data 
                   
                   
-              ''' 
+              ''' */
+           docker {
+            image 'test-helm-chart'
+            args '-v ${WORKSPACE}:/var'
+        }
+           
           }
       }
    
