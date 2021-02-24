@@ -39,7 +39,7 @@ pipeline {
               ''' */
            sh '''
                  
-                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} --volume ${WORKSPACE}:/var 
+                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} -v ${WORKSPACE}:/var 
                   
                   
               ''' 
