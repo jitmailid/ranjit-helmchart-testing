@@ -6,7 +6,7 @@ pipeline {
       IMAGE = "my-image"
       VERSION = '1.0'
       VALIDATION_COMPLETE = false
-      CONTAINER_NAME: "test-helm-chart"
+      CONTAINER_NAME= "test-helm-chart"
       
   }
   agent any
