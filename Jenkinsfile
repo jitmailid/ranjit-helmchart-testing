@@ -16,14 +16,14 @@ pipeline {
         git 'https://github.com/jitmailid/ranjit-helmchart-testing.git'
       }
     }
-        /*stage('Build docker image') {
+        stage('Build docker image') {
              steps {
                 sh '''
                     docker build -t ${IMAGE}:${VERSION} .
                     
                 '''
              }
-       }*/
+       }
       stage('Creation of Docker Container'){
           steps{
              /* sh '''
@@ -37,20 +37,20 @@ pipeline {
                   docker cp ${WORKSPACE}/values.schema.json test-helm-chart:data/
                   
               ''' */
-           /*sh '''
+           sh '''
                  
-                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} --volume ${WORKSPACE}:/data 
+                  docker run --name test-helm-chart -d ${IMAGE}:${VERSION} --volume ${WORKSPACE}:/var 
                   
                   
-              ''' */
+              ''' 
       
-           script{
+          /* script{
           docker {
                 image '${IMAGE}:${VERSION}'
                 args '-v ${WORKSPACE}:/var'
                 //reuseNode true
             }
-           }
+           }*/
             
            
           }
