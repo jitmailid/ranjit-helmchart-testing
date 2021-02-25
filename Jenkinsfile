@@ -29,7 +29,7 @@ pipeline {
             
            sh '''
                   
-                  docker run -d --name test-helm-chart  -v ${WORKSPACE}:/var  my-image:1.0  sleep infinity
+                  docker run -d --name test-helm-chart  -v jenkins_home:${WORKSPACE}  my-image:1.0  sleep infinity
                   
                   
               ''' 
