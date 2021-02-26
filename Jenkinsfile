@@ -29,7 +29,7 @@ pipeline {
             
            sh '''
                   
-                  docker run -d --name test-helm-chart  -v jenkins_home:${WORKSPACE}  my-image:1.0  sleep infinity
+                  docker run -d --name test-helm-chart  -v ${WORKSPACE}:/data  my-image:1.0  sleep infinity
                   
                   
               ''' 
@@ -50,7 +50,7 @@ try {
             
             //sh 'helm template ${WORKSPACE} | tee output.log'
            sh 'helm version'
-           sh 'helm lint ${WORKSPACE} | tee output.log';
+           sh 'helm lint /data | tee output.log';
           // sh 'helm template ${WORKSPACE} | tee output.log';
           validateData = sh('! grep "ERROR" output.log')
           if(validateData.toString().contains('ERROR'))
