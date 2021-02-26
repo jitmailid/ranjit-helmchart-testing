@@ -50,7 +50,7 @@ try {
             
             //sh 'helm template ${WORKSPACE} | tee output.log'
            sh 'helm version'
-           sh 'helm lint /data | tee output.log';
+           sh 'helm lint data | tee output.log';
           // sh 'helm template ${WORKSPACE} | tee output.log';
           validateData = sh('! grep "ERROR" output.log')
           if(validateData.toString().contains('ERROR'))
