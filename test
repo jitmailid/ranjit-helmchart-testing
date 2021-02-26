@@ -35,7 +35,7 @@ pipeline {
                   docker cp ${WORKSPACE}/values.schema.json test-helm-chart:data/
                   
               '''
-              //docker run -d --name test-helm-chart  -v ${WORKSPACE}:/data  my-image:1.0  sleep infinity
+              //docker run -d --name test-helm-chart  -v ${WORKSPACE}  my-image:1.0  sleep infinity
           }
       }
    
