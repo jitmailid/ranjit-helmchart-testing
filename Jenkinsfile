@@ -51,7 +51,7 @@ try {
             //sh 'helm template ${WORKSPACE} | tee output.log'
            sh 'helm version'
            sh 'helm lint ${WORKSPACE} | tee output.log';
-           sh 'helm template ${WORKSPACE} | tee output.log';
+          // sh 'helm template ${WORKSPACE} | tee output.log';
           validateData = sh('! grep "ERROR" output.log')
           if(validateData.toString().contains('ERROR'))
  {
